@@ -8,4 +8,10 @@ export class BookController {
     const books = await this.getAllBooks.execute()
     res.json(books)
   }
+
+  async create(req: Request, res: Response) {
+    const book = req.body
+    const bookRes = await DIContainer.createBookUseCase(book).execute()
+    res.json(bookRes)
+  }
 }
