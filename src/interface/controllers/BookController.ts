@@ -1,9 +1,8 @@
 import { Request, Response } from 'express'
-import { GetAllBooks } from '../../use-cases/GetAllBooks'
-import { CreateBook } from '../../use-cases/CreateBook'
+import { DIContainer } from '../../infrastructure/DIContainer'
 
 export class BookController {
-  constructor(private getAllBooks: GetAllBooks) {}
+  private getAllBooks = DIContainer.getAllBooksUseCase()
 
   async getAll(req: Request, res: Response) {
     const books = await this.getAllBooks.execute()
