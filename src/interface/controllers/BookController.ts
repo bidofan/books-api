@@ -1,4 +1,6 @@
 import { Request, Response } from 'express'
+import { validate } from 'class-validator'
+import { CreateBookDto } from '../dto/CreateBookDto'
 import { DIContainer } from '../../infrastructure/DIContainer'
 
 export class BookController {
@@ -10,8 +12,15 @@ export class BookController {
   }
 
   async create(req: Request, res: Response) {
-    const book = req.body
-    const bookRes = await DIContainer.createBookUseCase(book).execute()
-    res.json(bookRes)
+    const dto = Object.assign(new CreateBookDto(), req.body)
+    const errors = await validate(dto)
+
+    if (errors.length > 0) {
+      res.status(422).json({ errors })
+    } else {
+      const book = await DIContainer.createBookUseCase(req.body).execute()
+      res.json(book)
+    }
+
   }
 }
