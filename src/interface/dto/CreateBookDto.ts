@@ -8,5 +8,5 @@ export class CreateBookDto {
   author!: string
 
   @IsDateString()
-  date!: string
+  publishedDate!: string
 }
