@@ -3,6 +3,7 @@ import { MongoBookRepository } from './repositories/MongoBookRepository'
 import { GetAllBooks } from '../use-cases/GetAllBooks'
 import { CreateBook } from '../use-cases/CreateBook'
 import { UpdateBook } from '../use-cases/UpdateBook'
+import { DeleteBook } from '../use-cases/DeleteBook'
 
 class DIContainer {
   private static _bookRepository = new MongoBookRepository()
@@ -21,6 +22,10 @@ class DIContainer {
 
   static updateBookUseCase(book: Book) {
     return new UpdateBook(this.getBookRepository(), book)
+  }
+
+  static deleteBookUseCase(id: string) {
+    return new DeleteBook(this.getBookRepository(), id)
   }
 }
 

@@ -28,4 +28,9 @@ export class BookController {
     const book = await DIContainer.updateBookUseCase(req.body).execute()
     res.json(book)
   }
+
+  async delete(req: Request, res: Response) {
+    const result = await DIContainer.deleteBookUseCase(req.params.id).execute()
+    res.json(result).status(204)
+  }
 }
