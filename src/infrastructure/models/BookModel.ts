@@ -14,4 +14,4 @@ const BookSchema: Schema = new Schema({
 
 const BookModel = mongoose.model<IBook>('Book', BookSchema)
 
-export { BookModel,IBook }
+export { BookModel, IBook }

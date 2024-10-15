@@ -19,6 +19,8 @@ export class MongoBookRepository implements BookRepository {
 
   async update(book: Book): Promise<void> {
     await BookModel.findByIdAndUpdate(book.id, book)
+    .then((book) => console.log(book))
+    .catch((err) => console.log(err))
   }
 
   async delete(id: string): Promise<void> {

@@ -21,6 +21,11 @@ export class BookController {
       const book = await DIContainer.createBookUseCase(req.body).execute()
       res.json(book)
     }
+  }
 
+  async update(req: Request, res: Response) {
+    req.body.id = req.params.id
+    const book = await DIContainer.updateBookUseCase(req.body).execute()
+    res.json(book)
   }
 }
